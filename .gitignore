@@ -1,2 +1,11 @@
+# Scala files
 *.class
 *.log
+target/
+
+# MacOS files
+.DS_Store
+
+# IntelliJ IDEA files
+.idea/
+*.iml
