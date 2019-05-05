@@ -8,6 +8,8 @@ and Apache Spark (Spark Streaming).
 We will show key differences and we will try to compare them in a fair manner
 on aspects like performance, implementation learning curve, stability, etc.
 
+![TDH LEGO Truck](img/tdh_truck.jpg)
+
 ### Pre-requisites
 
 * Install [SBT](https://www.scala-sbt.org/download.html)
