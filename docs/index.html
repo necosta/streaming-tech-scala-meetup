@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/moon.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
@@ -25,18 +25,79 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h2>Streaming data from a LEGO Truck</h2>
+					<div style="text-align:center">
+						<img src="../img/tdh_truck.jpg" alt="TDH LEGO Truck" height="300" width="400" />
+					</div>
+					<h3>Scala Portugal Meetup 2019</h3>
+					<p>
+						<small>Created by Nelson Costa @ DTB TechDataHub</a></small>
+						<small>nelson.costa85@gmail.com // nelson.costa@daimler.com</a></small>
+					</p>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+							## Why?
+
+							Trucks are streaming telemetry data at a record rate<!-- .element: class="fragment" data-fragment-index="1" -->
+
+							This data is collected, transformed and stored to build intelligence<!-- .element: class="fragment" data-fragment-index="2" -->
+
+							It is paramount to compare the best open source tools capable of data streaming processing<!-- .element: class="fragment" data-fragment-index="3" -->
+						</script>
+					</section>
+					<section data-markdown>
+						<script type="text/template">
+							## Disclaimer
+
+							TBD
+						</script>
+					</section>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Technologies being compared
+
+						* Apache Kafka (Kafka Streams)
+						* Apache Storm
+						* Apache Spark (Spark Streaming)
+						* Other?
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Comparison
+
+						|   | Kafka  |  Storm |  Spark |
+						|---|---|---|---|
+						| Learning Curve  | TBD | TBD | TBD |
+						| Performance  | TBD | TBD | TBD |
+						| Stability  | TBD | TBD | TBD |
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## And that's it folks!
+
+						Hope you enjoyed it as much as I did
+
+						All code open-sourced on https://github.com/necosta/streaming-tech-scala-meetup
+
+						## Now question time!
+					</script>
+				</section>
 			</div>
 		</div>
 
 		<script src="js/reveal.js"></script>
 
 		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
+				slideNumber: false, // Display the page number of the current slide
+				history: true, // Push each slide change to the browser history
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
 					{ src: 'plugin/markdown/markdown.js' },
