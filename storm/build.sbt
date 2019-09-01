@@ -10,11 +10,13 @@ scalafmtFailTest in ThisBuild := true
 
 resolvers += "clojars-packages" at "https://clojars.org/repo/"
 
+val stormVersion = "2.0.0"
+
 // https://mvnrepository.com/artifact/org.apache.storm/storm-core
 libraryDependencies ++= Seq(
-  "org.apache.storm" % "storm-core" % "2.0.0" % "provided",
-  "org.apache.storm" % "storm-kafka-client" % "2.0.0",
-  "org.apache.kafka" % "kafka-clients" % "2.3.0",
+  "org.apache.storm" % "storm-core" % stormVersion % "provided",
+  "org.apache.storm" % "storm-kafka-client" % stormVersion,
+  "org.apache.kafka" % "kafka-clients" % stormVersion,
 )
 
 //package foo contains object and package with same name: supervisor

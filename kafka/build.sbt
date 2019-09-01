@@ -8,16 +8,21 @@ scalafmtOnCompile in ThisBuild := true
 scalafmtTestOnCompile in ThisBuild := true
 scalafmtFailTest in ThisBuild := true
 
+val kafkaVersion = "2.3.0"
+
 // https://mvnrepository.com/artifact/org.apache.kafka/kafka-streams
 libraryDependencies ++= Seq(
-  "org.apache.kafka" %% "kafka" % "2.3.0",
-  "org.apache.kafka" % "kafka-streams" % "2.3.0",
-  "org.slf4j" % "slf4j-api" % "1.7.25",
-  "org.slf4j" % "slf4j-log4j12" % "1.7.25"
+  "org.apache.kafka" %% "kafka" % kafkaVersion,
+  "org.apache.kafka" % "kafka-streams" % kafkaVersion
 )
 
 val testDependencies = Seq(
   "org.scalatest" %% "scalatest" % "3.0.5" % "test",
-  "org.apache.kafka" % "kafka-streams-test-utils" % "2.3.0" % "test")
+  "org.apache.kafka" % "kafka-streams-test-utils" % kafkaVersion % "test")
 
 libraryDependencies ++= testDependencies
+
+assemblyMergeStrategy in assembly := {
+  case PathList("META-INF", xs @ _ *) => MergeStrategy.discard
+  case x => MergeStrategy.first
+}

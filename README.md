@@ -1,7 +1,7 @@
 # Streaming data from a LEGO Truck 🚚
 
 Using data streamed from our custom made LEGO Truck,
-we will present several Scala-based streaming technologies
+we will present several Scala-based streaming event processing technologies
 such as Apache Kafka (Kafka Streams), Apache Storm
 and Apache Spark (Spark Streaming).
 
@@ -11,6 +11,21 @@ on aspects like performance, implementation learning curve, stability, etc.
 
 ![TDH LEGO Truck](docs/img/tdh_truck.jpg)
 
+### Project breakdown
+
+* `docs` -> Contains demo slides. See [README.md](./docs/README.md)
+* `kafka` -> Contains Kafka Streams Scala example. See [README.md](./kafka/README.md)
+* `spark` -> Contains Spark Streaming Scala example. See [README.md](./spark/README.md)
+* `storm` -> Contains Storm Scala example. See [README.md](./storm/README.md)
+
+### Technologies under evaluation
+
+* Apache Kafka (Kafka Streams)
+* Apache Spark (Spark Streaming)
+* Apache Storm
+* [Apache Flink](https://flink.apache.org/) (not implemented)
+* [Akka Streams](https://doc.akka.io/docs/akka/current/stream/index.html) (not implemented)
+* [Apache Samza](http://samza.apache.org/) (not implemented)
 
 ### Presentation
 
@@ -19,14 +34,6 @@ on aspects like performance, implementation learning curve, stability, etc.
 ### Pre-requisites
 
 * Install [SBT](https://www.scala-sbt.org/download.html)
-
-#### How to:
-
-* How to display slides: Simply open `index.html` on the browser
-    * `open -a "Google Chrome" index.html`
-* How to export slides into .pdf format
-    * On Chrome: `http://localhost:{PORT}/streaming-tech-scala-meetup/index.html?print-pdf#/`
-    * Print... > Save as PDF
 
 ### Disclaimer
 
@@ -38,3 +45,4 @@ committee or other group or individual.
 
 This project is licensed under the terms of the MIT license. See [LICENSE](LICENSE)
 
+🚚🚍🚚🚍🚚🚍🚚🚍🚚🚍🚚🚍
