@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Streaming data from a LEGO Truck</title>
+		<title>Processing streamed data from a LEGO Truck</title>
 
 		<link type="image/x-icon" rel="shortcut icon" href="img/tdh_truck.jpg" />
 
@@ -28,82 +28,176 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h2>Streaming data from a LEGO Truck</h2>
+					<h3>Processing streamed data from a LEGO Truck</h3>
 					<div style="text-align:center">
 						<img src="img/tdh_truck.jpg" alt="TDH LEGO Truck" height="300" width="400" />
 					</div>
-					<h3>Scala Meetup 2019</h3>
+					<h4>Scala Meetup 2019</h4>
 					<p>
 						<small>Created by Nelson Costa @ DTB TechDataHub</a></small>
 						<small>nelson.costa85@gmail.com // nelson.costa@daimler.com</a></small>
 					</p>
 				</section>
-				<section>
-					<section data-markdown>
-						<script type="text/template">
-							## Why?
+				<section data-markdown>
+					<script type="text/template">
+						## Why?
 
-							Trucks are streaming telemetry data at a record rate<!-- .element: class="fragment" data-fragment-index="1" -->
+						Trucks are streaming telemetry data at a record rate<!-- .element: class="fragment" data-fragment-index="1" -->
 
-							This data is collected, transformed and stored to build intelligence<!-- .element: class="fragment" data-fragment-index="2" -->
+						This data is collected, transformed and stored to build intelligence<!-- .element: class="fragment" data-fragment-index="2" -->
 
-							It is paramount to compare the best open source tools capable of data streaming processing<!-- .element: class="fragment" data-fragment-index="3" -->
-						</script>
-					</section>
+						It is paramount to compare the best open source tools capable of data streaming processing<!-- .element: class="fragment" data-fragment-index="3" -->
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## The world is moving from batch to real-time
+						<img data-src="img/batch_vs_streaming.jpeg" />
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Setup
+
+						**Source** -> LEGO Truck -> MQTT ->
+
+						**Producers** -> Kafka Producer ->
+
+						**Transformers** -> Kafka Streams | Spark Streaming | Storm ->
+
+						**Consumers** -> Kafka Consumer ->
+
+						**Target** -> DB, App, ...
+					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
 						## Technologies being compared
-
-						* Apache Kafka (Kafka Streams)
-						* Apache Storm
-						* Apache Spark (Spark Streaming)
-						* Apache Flink
+						<table>
+							<tr>
+								<td><img data-src="img/apache_kafka.jpeg" height="70" width="100" /></td>
+								<td>Apache Kafka - Kafka Streams</td>
+							</tr>
+							<tr>
+								<td><img data-src="img/apache_spark.png" height="70" width="100" /></td>
+								<td>Apache Spark - Spark Streaming</td>
+							</tr>
+							<tr>
+								<td><img data-src="img/apache_storm.jpg" height="70" width="100" /></td>
+								<td>Apache Storm</td>
+							</tr>
+							<tr></tr>
+						</table>
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## Apache Kafka
-						#### Kafka Streams
+						### Apache Kafka -  Kafka Streams
 
-						<img src="img/apache_kafka.png" alt="Apache Kafka" height="200" width="300" />
+						* Why?
+							* TBD
+						* Challenges
+							* TBD
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## Apache Storm
+						### Apache Spark - Spark Streaming
 
-						<img src="img/apache_storm.jpg" alt="Apache Storm" height="200" width="300" />
-
+						* Why?
+							* TBD
+						* Challenges
+							* TBD
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## Apache Spark
-						#### Spark Streaming
+						### Apache Storm
 
-						<img src="img/apache_spark.png" alt="Apache Spark" height="200" width="300" />
-
+						* Why?
+							* TBD
+						* Challenges
+							* TBD
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## Apache Flink
+						### Apache Kafka -  Kafka Streams
 
-						<img src="img/apache_flink.jpeg" alt="Apache Flink" height="200" width="300" />
+						```scala
+						def main(args: Array[String]): Unit = {
+							val builder = new StreamsBuilder()
+							val sourceStream = builder.stream[String, String]("SourceTopic")
+							val transformedStream =	sourceStream.flatMapValues(v =>
+								util.Arrays.asList(s"kafka-streams-transformation: $v"))
+							transformedStream.to("SinkTopic")
+							val streams = new KafkaStreams(builder.build(), config)
+							streams.start()
+						}
+						```
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### Apache Spark - Spark Streaming
 
+						```scala
+						def main(args: Array[String]): Unit = {
+							val sourceDF = spark.readStream.format("kafka")
+								.option("kafka.bootstrap.servers", "localhost:9092")
+								.option("subscribe", "SourceTopic")
+								.load()
+							val transformedDF = sourceDF
+								.selectExpr("CAST(key AS STRING)", "CAST(value AS STRING)").as[(String, String)]
+							transformedDF
+								.withColumn("prefix", lit("spark-streaming-transformation: "))
+								.withColumn("value", concat(col("prefix"), col("value")))
+								.writeStream
+								.format("kafka")
+								.option("kafka.bootstrap.servers", "localhost:9092")
+								.option("topic", "SinkTopic")
+								.start()
+						}
+						```
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### Apache Storm
+						```scala
+						def main(args: Array[String]): Unit = {
+							val builder = new TopologyBuilder()
+							val props = new Properties()
+							props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
+							val spoutConfig = KafkaSpoutConfig
+								.builder("localhost:9092", "SourceTopic")
+								.setRecordTranslator(new DefaultRecordTranslator())
+								.build()
+							builder.setSpout("ReadFromKafka", new KafkaSpout(spoutConfig)).setNumTasks(3)
+							builder
+								.setBolt("transformMsg", new SimpleBolt(), 3)
+								.localOrShuffleGrouping("ReadFromKafka")
+							val bolt = new KafkaBolt().withTupleToKafkaMapper(
+								new FieldNameBasedTupleToKafkaMapper("key", "transformed"))
+									.withProducerProperties(props)
+									.withTopicSelector(new DefaultTopicSelector("SinkTopic"))
+							builder
+								.setBolt("forwardToKafka", bolt, 3)
+								.localOrShuffleGrouping("transformMsg")
+							StormSubmitter.submitTopology("KafkaTest", new Config(), builder.createTopology())
+						}
+						```
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
 						## Comparison
 
-						|   | Kafka  |  Storm |  Spark | Flink |
-						|---|---|---|---|---|
-						| Learning Curve  | TBD | TBD | TBD | TBD |
-						| Performance  | TBD | TBD | TBD | TBD |
-						| Stability  | TBD | TBD | TBD | TBD |
-
+						|   | Kafka Streams  |  Spark Streaming | Storm  |
+						|---|---|---|---|
+						| Learning Curve  | +/- | +/- | - |
+						| Performance  | + | +/- | + |
+						| Stability  | + | - | +/- |
 					</script>
 				</section>
 				<section data-markdown>
