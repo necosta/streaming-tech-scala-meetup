@@ -23,6 +23,6 @@ val testDependencies = Seq(
 libraryDependencies ++= testDependencies
 
 assemblyMergeStrategy in assembly := {
-  case PathList("META-INF", xs @ _ *) => MergeStrategy.discard
-  case x => MergeStrategy.first
+  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+  case x                             => MergeStrategy.first
 }

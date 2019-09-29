@@ -14,9 +14,10 @@ val sparkVersion = "2.4.3"
 libraryDependencies ++= Seq(
   "org.apache.spark" %% "spark-streaming" % sparkVersion,
   "org.apache.spark" %% "spark-sql" % sparkVersion,
-  "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkVersion)
+  "org.apache.spark" %% "spark-sql-kafka-0-10" % sparkVersion
+)
 
 assemblyMergeStrategy in assembly := {
-  case PathList("META-INF", xs @ _ *) => MergeStrategy.discard
-  case x => MergeStrategy.first
+  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+  case x                             => MergeStrategy.first
 }

@@ -33,12 +33,26 @@ on aspects like performance, implementation learning curve, stability, etc.
 
 ### Pre-requisites
 
+* Install [Java](https://adoptopenjdk.net/)
 * Install [SBT](https://www.scala-sbt.org/download.html)
+* Download [Kafka](https://kafka.apache.org/downloads)
+* Download [Storm](https://storm.apache.org/downloads.html)
+
+### How to run (example)
+
+1. Start Zookeeper: `./bin/zookeeper-server-start.sh config/zookeeper.properties`
+1. Start Kafka broker: `./bin/kafka-server-start.sh config/server.properties`
+1. Create a Kafka producer: `./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic SourceTopic`
+1. Start all stream processors:
+  1. Kafka streams: `sbt run`
+  1. Spark streaming: `sbt run`
+  1. Storm: `./bin/storm jar storm-assembly.jar StreamProcessor`
+1. Setup Kafka consumer: `./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic SinkTopic`
 
 ### Disclaimer
 
-The views, thoughts, and opinions expressed in this repository belong 
-solely to the author, and not to the author’s employer, organization, 
+The views, thoughts, and opinions expressed in this repository belong
+solely to the author, and not to the author’s employer, organization,
 committee or other group or individual.
 
 ### License
