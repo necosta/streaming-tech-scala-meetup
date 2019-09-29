@@ -2,8 +2,8 @@
 
 Using data streamed from our custom made LEGO Truck,
 we will present several Scala-based streaming event processing technologies
-such as Apache Kafka (Kafka Streams), Apache Storm
-and Apache Spark (Spark Streaming).
+such as Apache Kafka (Kafka Streams), Apache Storm,
+Apache Spark (Spark Streaming) and Apache Flink
 
 We will show key differences and we will try to compare them in a fair manner
 on aspects like performance, implementation learning curve, stability, etc.
@@ -17,13 +17,14 @@ on aspects like performance, implementation learning curve, stability, etc.
 * `kafka` -> Contains Kafka Streams Scala example. See [README.md](./kafka/README.md)
 * `spark` -> Contains Spark Streaming Scala example. See [README.md](./spark/README.md)
 * `storm` -> Contains Storm Scala example. See [README.md](./storm/README.md)
+* `flink` -> Contains Flink Scala example. See [README.md](./flink/README.md)
 
 ### Technologies under evaluation
 
-* Apache Kafka (Kafka Streams)
-* Apache Spark (Spark Streaming)
-* Apache Storm
-* [Apache Flink](https://flink.apache.org/) (not implemented)
+* [Apache Kafka (Kafka Streams)](https://kafka.apache.org/)
+* [Apache Spark (Spark Streaming)](https://spark.apache.org)
+* [Apache Storm](https://storm.apache.org/)
+* [Apache Flink](https://flink.apache.org/)
 * [Akka Streams](https://doc.akka.io/docs/akka/current/stream/index.html) (not implemented)
 * [Apache Samza](http://samza.apache.org/) (not implemented)
 
