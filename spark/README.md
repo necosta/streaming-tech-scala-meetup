@@ -18,7 +18,7 @@ Features:
 * **Watching:** 2 135
 * **Stars:** 23 203
 * **Forks:** 19 909
-* **Topic: `spark`:** 3 921
+* **Topic: `spark-streaming`:** 502
 
 #### How to run
 

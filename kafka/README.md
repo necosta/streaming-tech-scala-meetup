@@ -18,7 +18,7 @@ Features:
 * **Watching:** 1 024
 * **Stars:** 13 407
 * **Forks:** 7 129
-* **Topic: `kafka`:** 3 568
+* **Topic: `kafka-streams`:** 345
 
 #### How to run
 

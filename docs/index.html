@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>Processing streamed data from a LEGO Truck</title>
+		<title>Processing stream data from a LEGO Truck</title>
 
 		<link type="image/x-icon" rel="shortcut icon" href="img/tdh_truck.jpg" />
 
@@ -28,13 +28,13 @@
 		<div class="reveal">
 			<div class="slides">
 				<section>
-					<h3>Processing streamed data from a LEGO Truck</h3>
+					<h3>Processing stream data from a LEGO Truck</h3>
 					<div style="text-align:center">
 						<img src="img/tdh_truck.jpg" alt="TDH LEGO Truck" height="300" width="400" />
 					</div>
 					<h4>Scala Meetup 2019</h4>
 					<p>
-						<small>Nelson Costa @ <strong>tb.lx</strong></small>
+						<small>Nelson Costa <strong>@ tb.lx</strong></small>
 						<br/>
 						<small>nelson.costa85@gmail.com /// nelson.costa@daimler.com</small>
 					</p>
@@ -47,7 +47,7 @@
 
 						This data needs to be collected and transformed to build intelligence in near real-time<!-- .element: class="fragment" data-fragment-index="2" -->
 
-						It is paramount to compare the best open source tools capable of data streaming processing<!-- .element: class="fragment" data-fragment-index="3" -->
+						We want to compare the best open source tools capable of data streaming processing<!-- .element: class="fragment" data-fragment-index="3" -->
 					</script>
 				</section>
 				<section data-markdown>
@@ -59,23 +59,10 @@
 				<section data-markdown>
 					<script type="text/template">
 						## Disclaimer
-							* Talk will focus only on streams processing which is a sub-domain of event streaming<!-- .element: class="fragment" data-fragment-index="1" -->
-							* And by no means I’m considering myself an expert on stream processing!<!-- .element: class="fragment" data-fragment-index="2" -->
-					</script>
-				</section>
-				<section data-markdown>
-					<script type="text/template">
-						## Setup
 
-						**Source** -> LEGO Truck -> Raspberry Pi ->
+						Talk will focus only on streams processing which is a sub-domain of event streaming<!-- .element: class="fragment" data-fragment-index="1" -->
 
-						**Producers** -> Kafka Producer ->
-
-						**Transformers** -> Kafka Streams | Spark Streaming | Storm | Flink ->
-
-						**Consumers** -> Kafka Consumer ->
-
-						**Target** -> DB, App, StdOut, ...
+						And by no means I’m considering myself an expert on stream processing!<!-- .element: class="fragment" data-fragment-index="2" -->
 					</script>
 				</section>
 				<section data-markdown>
@@ -95,7 +82,7 @@
 								<td>Apache Storm</td>
 							</tr>
 							<tr>
-								<td><img data-src="img/apache_flink.jpg" height="70" width="100" /></td>
+								<td><img data-src="img/apache_flink.jpeg" height="70" width="100" /></td>
 								<td>Apache Flink</td>
 							</tr>
 							<tr></tr>
@@ -136,6 +123,26 @@
 						* A streaming-first runtime that supports both batch processing and data streaming programs
 						* Supports very high throughput and low event latency at the same time
 						* Support for event time and out-of-order processing in the DataStream API, based on the Dataflow Model
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Setup
+
+						**Source** -> LEGO Truck -> Raspberry Pi ->
+
+						**Producers** -> Kafka Producer ->
+
+						**Transformers** -> Kafka Streams | Spark Streaming | Storm | Flink ->
+
+						**Consumers** -> Kafka Consumer ->
+
+						**Target** -> DB, App, StdOut, ...
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						# Demo
 					</script>
 				</section>
 				<section data-markdown>
@@ -238,18 +245,30 @@
 					<script type="text/template">
 						## Comparison
 
-						|   | Kafka Streams | Spark Streaming | Storm | Flink |
+						|   | Kafka Streams | Spark Streaming | Apache Storm | Apache Flink |
 						|---|---|---|---|---|
-						| Learning Curve  | +/- | +/- | - | - |
+						| Learning Curve  | +/- | +/- | +/- | +/- |
 						| Performance  | + | +/- | + | + |
-						| Stability  | + | - | +/- | + |
+						| Stability  | + | +/- | +/- | + |
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Community Adoption
+
+						|   | Apache Kafka | Apache Spark | Apache Storm | Apache Flink |
+						|---|---|---|---|---|
+						| Watching  | 1 024 | 2 135 | 632 | 804 |
+						| Stars  | 13 407 | 23 203 | 5 819 | 10 496 |
+						| Forks  | 7 129 | 19 909 | 3 948 | 5 621 |
+						| Repos w/topic  | 345 | 502 | 225 | 339 |
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
 						## Thank you!
 
-						Hope you enjoyed it as much as I did!
+						Hope you enjoyed it!
 
 						All code open-sourced on https://github.com/necosta/streaming-tech-scala-meetup
 
