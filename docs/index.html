@@ -58,6 +58,13 @@
 				</section>
 				<section data-markdown>
 					<script type="text/template">
+						## Disclaimer
+							* Talk will focus only on streams processing which is a sub-domain of event streaming<!-- .element: class="fragment" data-fragment-index="1" -->
+							* And by no means I’m considering myself an expert on stream processing!<!-- .element: class="fragment" data-fragment-index="2" -->
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
 						## Setup
 
 						**Source** -> LEGO Truck -> Raspberry Pi ->
@@ -99,40 +106,36 @@
 					<script type="text/template">
 						### Apache Kafka -  Kafka Streams
 
-						* Why?
-							* TBD
-						* Challenges
-							* TBD
+						* Free and open source distributed event processing computation
+						* Scalable, fault-tolerant data processing
+						* Seamless integration with Kafka
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
 						### Apache Spark - Spark Streaming
 
-						* Why?
-							* TBD
-						* Challenges
-							* TBD
+						* Free and open source distributed batch and streaming computation
+						* Scalable, fault-tolerant data processing
+						* Seamless integration with Spark
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
 						### Apache Storm
 
-						* Why?
-							* TBD
-						* Challenges
-							* TBD
+						* Free and open source distributed realtime computation system
+						* Scalable, fault-tolerant data processing
+						* Designed to be usable with any programming language (with Apache Thrift)
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
 						### Apache Flink
 
-						* Why?
-							* TBD
-						* Challenges
-							* TBD
+						* A streaming-first runtime that supports both batch processing and data streaming programs
+						* Supports very high throughput and low event latency at the same time
+						* Support for event time and out-of-order processing in the DataStream API, based on the Dataflow Model
 					</script>
 				</section>
 				<section data-markdown>
@@ -208,6 +211,26 @@
 					<script type="text/template">
 						### Apache Flink
 						```scala
+						def main(args: Array[String]): Unit = {
+
+							implicit val typeInfo: TypeInformation[String] = TypeInformation.of(classOf[String])
+							val env = StreamExecutionEnvironment.createLocalEnvironment()
+							val properties = new Properties()
+							properties.put("zookeeper.connect", "localhost:2181")
+							properties.put("bootstrap.servers", "localhost:9092")
+							env
+							.addSource(
+								new FlinkKafkaConsumer[String]("SourceTopic",
+								KafkaStringSchema,
+								properties))
+							.map(word => s"flink-transformation: $word")
+							.addSink(
+								new FlinkKafkaProducer[String]("SinkTopic",
+								new KafkaStringSerializationSchema("SinkTopic"),
+								properties,
+								FlinkKafkaProducer.Semantic.EXACTLY_ONCE))
+							env.execute()
+						}
 						```
 					</script>
 				</section>
