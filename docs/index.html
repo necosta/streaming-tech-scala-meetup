@@ -34,24 +34,25 @@
 					</div>
 					<h4>Scala Meetup 2019</h4>
 					<p>
-						<small>Created by Nelson Costa @ DTB TechDataHub</a></small>
-						<small>nelson.costa85@gmail.com // nelson.costa@daimler.com</a></small>
+						<small>Nelson Costa @ <strong>tb.lx</strong></small>
+						<br/>
+						<small>nelson.costa85@gmail.com /// nelson.costa@daimler.com</small>
 					</p>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
 						## Why?
 
-						Trucks are streaming telemetry data at a record rate<!-- .element: class="fragment" data-fragment-index="1" -->
+						Trucks (and other IoT devices) are streaming telemetry data at a record rate<!-- .element: class="fragment" data-fragment-index="1" -->
 
-						This data is collected, transformed and stored to build intelligence<!-- .element: class="fragment" data-fragment-index="2" -->
+						This data needs to be collected and transformed to build intelligence in near real-time<!-- .element: class="fragment" data-fragment-index="2" -->
 
 						It is paramount to compare the best open source tools capable of data streaming processing<!-- .element: class="fragment" data-fragment-index="3" -->
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## The world is moving from batch to real-time
+						## And the world is moving from batch to real-time
 						<img data-src="img/batch_vs_streaming.jpeg" />
 					</script>
 				</section>
@@ -59,15 +60,15 @@
 					<script type="text/template">
 						## Setup
 
-						**Source** -> LEGO Truck -> MQTT ->
+						**Source** -> LEGO Truck -> Raspberry Pi ->
 
 						**Producers** -> Kafka Producer ->
 
-						**Transformers** -> Kafka Streams | Spark Streaming | Storm ->
+						**Transformers** -> Kafka Streams | Spark Streaming | Storm | Flink ->
 
 						**Consumers** -> Kafka Consumer ->
 
-						**Target** -> DB, App, ...
+						**Target** -> DB, App, StdOut, ...
 					</script>
 				</section>
 				<section data-markdown>
@@ -85,6 +86,10 @@
 							<tr>
 								<td><img data-src="img/apache_storm.jpg" height="70" width="100" /></td>
 								<td>Apache Storm</td>
+							</tr>
+							<tr>
+								<td><img data-src="img/apache_flink.jpg" height="70" width="100" /></td>
+								<td>Apache Flink</td>
 							</tr>
 							<tr></tr>
 						</table>
@@ -113,6 +118,16 @@
 				<section data-markdown>
 					<script type="text/template">
 						### Apache Storm
+
+						* Why?
+							* TBD
+						* Challenges
+							* TBD
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### Apache Flink
 
 						* Why?
 							* TBD
@@ -191,24 +206,31 @@
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## Comparison
-
-						|   | Kafka Streams  |  Spark Streaming | Storm  |
-						|---|---|---|---|
-						| Learning Curve  | +/- | +/- | - |
-						| Performance  | + | +/- | + |
-						| Stability  | + | - | +/- |
+						### Apache Flink
+						```scala
+						```
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## And that's it folks!
+						## Comparison
 
-						Hope you enjoyed it as much as I did
+						|   | Kafka Streams | Spark Streaming | Storm | Flink |
+						|---|---|---|---|---|
+						| Learning Curve  | +/- | +/- | - | - |
+						| Performance  | + | +/- | + | + |
+						| Stability  | + | - | +/- | + |
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Thank you!
+
+						Hope you enjoyed it as much as I did!
 
 						All code open-sourced on https://github.com/necosta/streaming-tech-scala-meetup
 
-						## Now questions time!
+						## Questions time?
 					</script>
 				</section>
 			</div>
