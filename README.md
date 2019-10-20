@@ -27,6 +27,7 @@ on aspects like performance, implementation learning curve, stability, etc.
 * [Apache Flink](https://flink.apache.org/)
 * [Akka Streams](https://doc.akka.io/docs/akka/current/stream/index.html) (not implemented)
 * [Apache Samza](http://samza.apache.org/) (not implemented)
+* [Apache Heron (Incubator)](https://apache.github.io/incubator-heron/) (not implemented)
 
 ### Presentation
 
