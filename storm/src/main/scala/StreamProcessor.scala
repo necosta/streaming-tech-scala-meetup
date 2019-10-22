@@ -7,7 +7,7 @@ import org.apache.storm.kafka.bolt.KafkaBolt
 import org.apache.storm.kafka.bolt.mapper.FieldNameBasedTupleToKafkaMapper
 import org.apache.storm.kafka.bolt.selector.DefaultTopicSelector
 import org.apache.storm.kafka.spout._
-import org.apache.storm.{Config, LocalCluster, StormSubmitter}
+import org.apache.storm.{Config, LocalCluster}
 import org.apache.storm.topology.TopologyBuilder
 import org.apache.storm.utils.Utils
 
@@ -15,13 +15,16 @@ import scala.collection.JavaConverters._
 
 object StreamProcessor {
 
+  private val TARGET_KAFKA_BROKER = "localhost"
+
   def main(args: Array[String]): Unit = {
     println("Started processing")
 
     val builder = new TopologyBuilder()
 
     val props = new Properties()
-    props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092")
+    props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
+              s"$TARGET_KAFKA_BROKER:9092")
     props.put("key.serializer",
               "org.apache.kafka.common.serialization.StringSerializer")
     props.put("value.serializer",
@@ -29,7 +32,7 @@ object StreamProcessor {
     props.put(ConsumerConfig.GROUP_ID_CONFIG, "default")
 
     val spoutConfig = KafkaSpoutConfig
-      .builder("localhost:9092", "SourceTopic")
+      .builder(s"$TARGET_KAFKA_BROKER:9092", "SourceTopic")
       .setRecordTranslator(new DefaultRecordTranslator())
       .setProp(props.asScala.toMap[String, Object].asJava)
       .setProp(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG,
@@ -70,6 +73,5 @@ object StreamProcessor {
     Utils.sleep(1000 * 60 * 60)
 
     cluster.shutdown()
-
   }
 }
