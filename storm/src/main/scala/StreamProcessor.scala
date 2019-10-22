@@ -9,6 +9,7 @@ import org.apache.storm.kafka.bolt.selector.DefaultTopicSelector
 import org.apache.storm.kafka.spout._
 import org.apache.storm.{Config, LocalCluster, StormSubmitter}
 import org.apache.storm.topology.TopologyBuilder
+import org.apache.storm.utils.Utils
 
 import scala.collection.JavaConverters._
 
@@ -63,10 +64,10 @@ object StreamProcessor {
 
     val cluster = new LocalCluster()
 
-    StormSubmitter.submitTopology("KafkaTest", conf, builder.createTopology())
+    cluster.submitTopology("KafkaTest", conf, builder.createTopology())
 
-    // ToDO: Review the need to have this...
-    Thread.sleep(1000 * 60 * 60)
+    // ToDo: Review the need to have this...
+    Utils.sleep(1000 * 60 * 60)
 
     cluster.shutdown()
 

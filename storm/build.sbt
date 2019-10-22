@@ -14,7 +14,7 @@ val stormVersion = "2.0.0"
 
 // https://mvnrepository.com/artifact/org.apache.storm/storm-core
 libraryDependencies ++= Seq(
-  "org.apache.storm" % "storm-core" % stormVersion % "provided",
+  "org.apache.storm" % "storm-core" % stormVersion,
   "org.apache.storm" % "storm-kafka-client" % stormVersion,
   "org.apache.kafka" % "kafka-clients" % stormVersion,
 )

@@ -43,12 +43,14 @@ on aspects like performance, implementation learning curve, stability, etc.
 ### How to run (example)
 
 1. Start Zookeeper: `./bin/zookeeper-server-start.sh config/zookeeper.properties`
+    * Set default port `2182`
 1. Start Kafka broker: `./bin/kafka-server-start.sh config/server.properties`
 1. Create a Kafka producer: `./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic SourceTopic`
 1. Start all stream processors:
   1. Kafka streams: `sbt run`
   1. Spark streaming: `sbt run`
-  1. Storm: `./bin/storm jar storm-assembly.jar StreamProcessor`
+  1. Storm: `sbt run`
+  1. Flink: `sbt run`
 1. Setup Kafka consumer: `./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic SinkTopic`
 
 ### Disclaimer

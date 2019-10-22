@@ -237,7 +237,6 @@
 							implicit val typeInfo: TypeInformation[String] = TypeInformation.of(classOf[String])
 							val env = StreamExecutionEnvironment.createLocalEnvironment()
 							val properties = new Properties()
-							properties.put("zookeeper.connect", "localhost:2181")
 							properties.put("bootstrap.servers", "localhost:9092")
 							env
 							.addSource(
