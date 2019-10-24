@@ -38,7 +38,6 @@ on aspects like performance, implementation learning curve, stability, etc.
 * Install [Java](https://adoptopenjdk.net/)
 * Install [SBT](https://www.scala-sbt.org/download.html)
 * Download [Kafka](https://kafka.apache.org/downloads)
-* Download [Storm](https://storm.apache.org/downloads.html)
 
 ### How to run (example)
 

@@ -43,7 +43,7 @@
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## Why?
+						## Why this topic?
 
 						Trucks (and other IoT devices) are streaming telemetry data at a record rate<!-- .element: class="fragment" data-fragment-index="1" -->
 
@@ -54,8 +54,11 @@
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## And the world is moving from batch to real-time
-						<img data-src="img/batch_vs_streaming.jpeg" />
+						## And the world is moving from batch to streaming
+
+						<img data-src="img/batch_vs_streaming.jpeg" height="280" width="600" />
+
+						[trends.google.com](https://trends.google.com/trends/explore?date=2016-07-18%202019-08-18&q=%2Fm%2F0fdjtq,%2Fm%2F0zmynvd)
 					</script>
 				</section>
 				<section data-markdown>
@@ -64,7 +67,7 @@
 
 						Talk will focus only on streams processing which is a sub-domain of event streaming<!-- .element: class="fragment" data-fragment-index="1" -->
 
-						By no means I’m considering myself an expert on stream processing! 😊<!-- .element: class="fragment" data-fragment-index="2" -->
+						By no means I’m considering myself an expert 😊<!-- .element: class="fragment" data-fragment-index="2" -->
 					</script>
 				</section>
 				<section data-markdown>
@@ -105,7 +108,7 @@
 					<script type="text/template">
 						### Apache Kafka - Kafka Streams
 
-						* 👍 Very light-weight, designed for throughput
+						* 👍 Very light-weight, designed for high throughput
 						* 👍 Supports stateful and stateless processing
 						* 👍 Allows late arrival of data and windowing with out-of-order data
 						* 👍 Supports elasticity and does not need dedicated cluster
@@ -134,7 +137,7 @@
 					<script type="text/template">
 						### Apache Flink
 
-						* 👍 Guarantees exactly-once stream processing
+						* 👍 Low latency with high throughput, configurable according to requirements
 						* 👍 Advance features like event time and out-of-order processing
 						* 👎 Learning curve
 					</script>
@@ -143,15 +146,13 @@
 					<script type="text/template">
 						## Setup
 
-						**Source** -> LEGO Truck -> Raspberry Pi ->
-
-						**Producers** -> Kafka Producer ->
-
-						**Transformers** -> Kafka Streams | Spark Streaming | Storm | Flink ->
-
-						**Consumers** -> Kafka Consumer ->
-
-						**Target** -> DB, App, StdOut, ...
+						| | |
+						|---|---|
+						| **Source:** | LEGO Truck + Raspberry Pi -> |
+						| **Producers:** | Kafka Producer -> |
+						| **Transformers:** | Kafka Streams \| Spark Streaming \| Storm \| Flink -> |
+						| **Consumers:** | Kafka Consumer -> |
+						| **Target:** | StdOut |
 					</script>
 				</section>
 				<section data-markdown>
@@ -223,7 +224,7 @@
 							builder
 								.setBolt("forwardToKafka", bolt, 3)
 								.localOrShuffleGrouping("transformMsg")
-							StormSubmitter.submitTopology("KafkaTest", new Config(), builder.createTopology())
+							new LocalCluster().submitTopology("KafkaTest", new Config(), builder.createTopology())
 						}
 						```
 					</script>
@@ -256,14 +257,14 @@
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## Comparison
+						## Comparison (opinionated)
 
 						|   | Kafka Streams | Spark Streaming | Apache Storm | Apache Flink |
 						|---|---|---|---|---|
 						| Learning Curve  | +/- | L | +/- | H |
 						| Latency | +/- | - | + | + |
 						| Throughput | + | +/- | +/- | +/- |
-						| Stability  | +/- | +/- | + | + |
+						| Maturity  | - | +/- | + | + |
 					</script>
 				</section>
 				<section data-markdown>
@@ -272,9 +273,9 @@
 
 						|   | Apache Kafka | Apache Spark | Apache Storm | Apache Flink |
 						|---|---|---|---|---|
-						| Watching  | 1k | 2.1k | 632 | 804 |
 						| Stars  | 13.4k | 23.2k | 5.8k | 10.5k |
 						| Forks  | 7.1k | 19.9k | 4k | 5.6k |
+						| Watching  | 1k | 2.1k | 632 | 804 |
 						| Repos w/topic  | 345 | 502 | 225 | 339 |
 					</script>
 				</section>
@@ -282,7 +283,7 @@
 					<script type="text/template">
 						## Conclusions
 
-						* Stream processing can be very challenging<!-- .element: class="fragment" data-fragment-index="1" -->
+						* Stream processing can easily become very challenging<!-- .element: class="fragment" data-fragment-index="1" -->
 						* There is no one silver bullet solution for all use-cases<!-- .element: class="fragment" data-fragment-index="2" -->
 						* Scala can keep a key position in this area!<!-- .element: class="fragment" data-fragment-index="3" -->
 					</script>
