@@ -6,7 +6,8 @@ import org.apache.flink.streaming.connectors.kafka._
 
 object StreamProcessor {
 
-  private val TARGET_KAFKA_BROKER = "localhost"
+  private val TARGET_KAFKA_BROKER =
+    "kafka-broker-0-scala-meetup.westeurope.cloudapp.azure.com"
   private val PREFIX = "flink-transformation"
   private val THRESHOLD_X = 0.1
   private val THRESHOLD_Y = 0.05
@@ -19,7 +20,7 @@ object StreamProcessor {
     val env = StreamExecutionEnvironment.createLocalEnvironment()
 
     val properties = new Properties()
-    properties.put("zookeeper.connect", "localhost:2181")
+    //properties.put("zookeeper.connect", "localhost:2181")
     properties.put("bootstrap.servers", s"$TARGET_KAFKA_BROKER:9092")
 
     env
@@ -29,7 +30,7 @@ object StreamProcessor {
           KafkaStringSchema,
           properties
         ))
-      .map(transformSimpleStream)
+      .map(transformTruckStream)
       .addSink(
         new FlinkKafkaProducer[String](
           "SinkTopic",

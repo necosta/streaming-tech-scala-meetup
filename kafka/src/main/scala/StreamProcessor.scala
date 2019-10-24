@@ -6,7 +6,8 @@ import org.apache.kafka.streams.{KafkaStreams, StreamsBuilder, StreamsConfig}
 
 object StreamProcessor {
 
-  private val TARGET_KAFKA_BROKER = "localhost"
+  private val TARGET_KAFKA_BROKER =
+    "kafka-broker-0-scala-meetup.westeurope.cloudapp.azure.com"
   private val PREFIX = "kafka-streams-transformation"
   private val THRESHOLD_X = 0.1
   private val THRESHOLD_Y = 0.05
@@ -28,7 +29,7 @@ object StreamProcessor {
     val sourceStream = builder.stream[String, String]("SourceTopic")
 
     val transformedStream =
-      sourceStream.flatMapValues(transformSimpleStream.apply(_))
+      sourceStream.flatMapValues(transformTruckStream.apply(_))
     transformedStream.to("SinkTopic")
     val streams = new KafkaStreams(builder.build(), config)
     streams.start()

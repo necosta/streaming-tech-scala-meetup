@@ -15,7 +15,8 @@ import scala.collection.JavaConverters._
 
 object StreamProcessor {
 
-  private val TARGET_KAFKA_BROKER = "localhost"
+  private val TARGET_KAFKA_BROKER =
+    "kafka-broker-0-scala-meetup.westeurope.cloudapp.azure.com"
 
   def main(args: Array[String]): Unit = {
     println("Started processing")
@@ -45,7 +46,7 @@ object StreamProcessor {
     builder.setSpout("ReadFromKafka", kafkaSpout).setNumTasks(3)
 
     builder
-      .setBolt("transformMsg", new SimpleBolt(), 3)
+      .setBolt("transformMsg", new TruckBolt(), 3)
       .localOrShuffleGrouping("ReadFromKafka")
 
     val bolt = new KafkaBolt()

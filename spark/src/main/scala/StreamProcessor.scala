@@ -3,7 +3,8 @@ import org.apache.spark.sql.functions._
 
 object StreamProcessor {
 
-  private val TARGET_KAFKA_BROKER = "localhost"
+  private val TARGET_KAFKA_BROKER =
+    "kafka-broker-0-scala-meetup.westeurope.cloudapp.azure.com"
   private val PREFIX = "spark-streaming-transformation"
   private val THRESHOLD_X = 0.1
   private val THRESHOLD_Y = 0.05
@@ -32,7 +33,7 @@ object StreamProcessor {
       .as[(String, String)]
 
     val outputDF = transformedDF
-      .withColumn("value", transformSimpleStream)
+      .withColumn("value", transformTruckStream)
 
     val query = outputDF.writeStream
       .format("kafka")
